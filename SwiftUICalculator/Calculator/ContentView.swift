@@ -48,12 +48,11 @@ struct ContentView: View {
   
   @State var value = "0"
   @State var valueNumber : Double = 0
-  @State var runningNumber = 0
+  @State var runningNumber = 0.0
   @State var currentOperation: Operation = .none
   @State var flag = false
-  @State var runningValue = 0
-  
-  @State var currentValue = 0
+  @State var runningValue = 0.0
+  @State var currentValue = 0.0
   
   
   let buttons: [[CalcButton]] = [
@@ -76,7 +75,7 @@ struct ContentView: View {
           Spacer()
           Text(value)
             .bold()
-            .font(.system(size: 100))
+            .font(.system(size: 72))
             .foregroundColor(.white)
         }
         .padding()
@@ -112,30 +111,30 @@ struct ContentView: View {
     case .add, .subtract, .mutiply, .divide, .equal:
       if button == .add {
         self.currentOperation = .add
-        self.runningNumber = Int(self.value) ?? 0
+        self.runningNumber = Double(self.value) ?? 0
         flag = true
       }
       else if button == .subtract {
         self.currentOperation = .subtract
-        self.runningNumber = Int(self.value) ?? 0
+        self.runningNumber = Double(self.value) ?? 0
         flag = true
       }
       else if button == .mutiply {
         self.currentOperation = .multiply
-        self.runningNumber = Int(self.value) ?? 0
+        self.runningNumber = Double(self.value) ?? 0
         flag = true
       }
       else if button == .divide {
         self.currentOperation = .divide
-        self.runningNumber = Int(self.value) ?? 0
+        self.runningNumber = Double(self.value) ?? 0
         flag = true
       }
       else if button == .equal {
         if self.runningValue == 0 {
-          self.runningValue = Int(self.runningNumber)
+          self.runningValue = Double(self.runningNumber)
         }
         if self.currentValue == 0 {
-          self.currentValue = Int(self.value) ?? 0
+          self.currentValue = Double(self.value) ?? 0
         }
         switch self.currentOperation {
         case .add:
@@ -149,7 +148,7 @@ struct ContentView: View {
         case .none:
           break
         }
-        self.runningValue = Int(self.value) ?? 0
+        self.runningValue = Double(self.value) ?? 0
       }
     case .clear:
       self.value = "0"

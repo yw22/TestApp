@@ -47,6 +47,7 @@ enum Operation {
 struct ContentView: View {
   
   @State var value = "0"
+  @State var valueNumber : Double = 0
   @State var runningNumber = 0
   @State var currentOperation: Operation = .none
   @State var flag = false
@@ -134,18 +135,17 @@ struct ContentView: View {
           self.runningValue = Int(self.runningNumber)
         }
         if self.currentValue == 0 {
-          currentValue = Int(self.value) ?? 0
+          self.currentValue = Int(self.value) ?? 0
         }
         switch self.currentOperation {
-        case .add: self.value = "\(runningValue + currentValue)"
-        case .subtract: self.value = "\(runningValue - currentValue)"
-        case .multiply: self.value = "\(runningValue * currentValue)"
+        case .add:
+          self.value = "\(runningValue + currentValue)"
+        case .subtract:
+          self.value = "\(runningValue - currentValue)"
+        case .multiply:
+          self.value = "\(runningValue * currentValue)"
         case .divide:
-          if (Double(runningValue) / Double(currentValue)) == 0 {
-          self.value = "\(Double(runningValue) / Double(currentValue))"
-        } else {
-          
-        }
+          self.value = "\(runningValue / currentValue)"
         case .none:
           break
         }
@@ -158,7 +158,23 @@ struct ContentView: View {
       self.currentValue = 0
       
     case .decimal, .negative, .percent:
-      break
+      if button == .decimal {
+        if self.value.contains(".") == true {
+          break
+        } else {
+          self.value = "\(self.value)."
+        }
+      } else if button == .negative {
+        self.valueNumber = Double(self.value) ?? 0
+        self.valueNumber = self.valueNumber * -1
+        if self.value.contains(".") == true {
+          self.value = String(self.valueNumber)
+        } else {
+          self.value = String(Int(self.valueNumber))
+        }
+      } else {
+        self.value = "\((Double(self.value) ?? 0) / 100)"
+      }
       
     default:
       let number = button.rawValue

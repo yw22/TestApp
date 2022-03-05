@@ -140,7 +140,12 @@ struct ContentView: View {
         case .add: self.value = "\(runningValue + currentValue)"
         case .subtract: self.value = "\(runningValue - currentValue)"
         case .multiply: self.value = "\(runningValue * currentValue)"
-        case .divide: self.value = "\(runningValue / currentValue)"
+        case .divide:
+          if (Double(runningValue) / Double(currentValue)) == 0 {
+          self.value = "\(Double(runningValue) / Double(currentValue))"
+        } else {
+          
+        }
         case .none:
           break
         }

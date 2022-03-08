@@ -184,7 +184,13 @@ struct ContentView: View {
           self.value = "\(self.value)\(number)"
         }
       } else {
+        // 소수가 없다면 int형으로 표시
         value = number
+        if Double(value)?.truncatingRemainder(dividingBy: 1.0) == 0 {
+          let a : Int = Int(value) ?? 0
+          let b : String = String(a)
+          value = b
+        }
         flag = !flag
       }
     }
@@ -200,6 +206,7 @@ struct ContentView: View {
   func buttonheight() -> CGFloat {
     return (UIScreen.main.bounds.width - (5 * 12)) / 4
   }
+  
 }
 
 

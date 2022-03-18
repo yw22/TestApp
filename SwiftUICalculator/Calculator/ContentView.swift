@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Foundation
 
 enum CalcButton: String {
   case one = "1"
@@ -138,13 +139,33 @@ struct ContentView: View {
         }
         switch self.currentOperation {
         case .add:
-          self.value = "\(runningValue + currentValue)"
+          let a = runningValue + currentValue
+          if a == floor(a){
+            self.value = "\(Int(a))"
+          } else {
+            self.value = "\(a)"
+          }
         case .subtract:
-          self.value = "\(runningValue - currentValue)"
+          let a = runningValue - currentValue
+          if a == floor(a){
+            self.value = "\(Int(a))"
+          } else {
+            self.value = "\(a)"
+          }
         case .multiply:
-          self.value = "\(runningValue * currentValue)"
+          let a = runningValue * currentValue
+          if a == floor(a){
+            self.value = "\(Int(a))"
+          } else {
+            self.value = "\(a)"
+          }
         case .divide:
-          self.value = "\(runningValue / currentValue)"
+          let a = runningValue / currentValue
+          if a == floor(a){
+            self.value = "\(Int(a))"
+          } else {
+            self.value = "\(a)"
+          }
         case .none:
           break
         }
@@ -186,11 +207,6 @@ struct ContentView: View {
       } else {
         // 소수가 없다면 int형으로 표시
         value = number
-        if Double(value)?.truncatingRemainder(dividingBy: 1.0) == 0 {
-          let a : Int = Int(value) ?? 0
-          let b : String = String(a)
-          value = b
-        }
         flag = !flag
       }
     }

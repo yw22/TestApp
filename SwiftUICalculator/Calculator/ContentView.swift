@@ -139,33 +139,17 @@ struct ContentView: View {
         }
         switch self.currentOperation {
         case .add:
-          let a = runningValue + currentValue
-          if a == floor(a){
-            self.value = "\(Int(a))"
-          } else {
-            self.value = "\(a)"
-          }
+          let result = runningValue + currentValue
+          isDot(num: result)
         case .subtract:
-          let a = runningValue - currentValue
-          if a == floor(a){
-            self.value = "\(Int(a))"
-          } else {
-            self.value = "\(a)"
-          }
+          let result = runningValue - currentValue
+          isDot(num: result)
         case .multiply:
-          let a = runningValue * currentValue
-          if a == floor(a){
-            self.value = "\(Int(a))"
-          } else {
-            self.value = "\(a)"
-          }
+          let result = runningValue * currentValue
+          isDot(num: result)
         case .divide:
-          let a = runningValue / currentValue
-          if a == floor(a){
-            self.value = "\(Int(a))"
-          } else {
-            self.value = "\(a)"
-          }
+          let result = runningValue / currentValue
+          isDot(num: result)
         case .none:
           break
         }
@@ -205,7 +189,6 @@ struct ContentView: View {
           self.value = "\(self.value)\(number)"
         }
       } else {
-        // 소수가 없다면 int형으로 표시
         value = number
         flag = !flag
       }
@@ -223,6 +206,16 @@ struct ContentView: View {
     return (UIScreen.main.bounds.width - (5 * 12)) / 4
   }
   
+  // 실수가 아니면 정수형으로 표기
+  func isDot(num : Double){
+    let dotSixRange : Double = pow(10, 6)
+    if num == floor(num){
+      self.value = "\(Int(num))"
+    } else {
+      // 소수점 6자리까지 표현
+      self.value = "\(floor(num * dotSixRange) / dotSixRange)"
+    }
+  }
 }
 
 

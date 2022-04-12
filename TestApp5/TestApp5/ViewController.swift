@@ -16,11 +16,13 @@ class ViewController: UIViewController {
   var userNumberStirng: String = ""
   
   
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     upDownLabel.text = "선택하세요"
     userSelectNumberLabel.text = ""
   }
+  
 
   @IBAction func numbersButtonTapped(_ sender: UIButton) {
     

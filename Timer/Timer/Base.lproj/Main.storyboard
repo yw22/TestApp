@@ -57,6 +57,9 @@
                                             </label>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="mn7-gk-Q5d">
                                                 <rect key="frame" x="48" y="0.0" width="298" height="31"/>
+                                                <connections>
+                                                    <action selector="sliderChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="VJT-X8-fxb"/>
+                                                </connections>
                                             </slider>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="60초" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ac7-ZD-0SU">
                                                 <rect key="frame" x="354" y="0.0" width="40" height="30"/>
@@ -89,6 +92,9 @@
                                         <buttonConfiguration key="configuration" style="plain" title="Reset">
                                             <fontDescription key="titleFontDescription" type="boldSystem" pointSize="21"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="resetButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Jap-Qz-vTi"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mvf-Qp-ydt">
                                         <rect key="frame" x="204.5" y="0.0" width="189.5" height="50"/>
@@ -98,6 +104,9 @@
                                         <buttonConfiguration key="configuration" style="plain" title="Start">
                                             <fontDescription key="titleFontDescription" type="boldSystem" pointSize="21"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="startButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1hq-Ne-zNV"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -116,6 +125,10 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wMH-he-OC3" secondAttribute="trailing" constant="10" id="qgq-jG-nbl"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mainLabel" destination="B1P-IE-oWo" id="dqc-No-34q"/>
+                        <outlet property="slider" destination="mn7-gk-Q5d" id="vqp-sl-Y5g"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

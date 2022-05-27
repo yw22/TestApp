@@ -26,7 +26,7 @@ class ViewController: UIViewController {
     func settingUI( ){
         mainLabel.text = "초를 선택하세요"
         slider.setValue(0.5, animated: true)
-        timer = nil
+        timer?.invalidate()
     }
     
     @IBAction func sliderChanged(_ sender: UISlider) {
@@ -40,18 +40,15 @@ class ViewController: UIViewController {
         // 1초씩 지나갈때마다 무언가를 실행
         timer?.invalidate()
         //        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(doSomethingAfter1Second), userInfo: nil, repeats: true)
-        
-        
+
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [self] _ in
             // 반복을 하고 싶은 코드
-            
             if number > 0{
                 number -= 1
                 // 슬라이더 표시
                 slider.setValue(Float(number) / 60.0, animated: true)
                 // 레이블표시도 다시 표시
                 mainLabel.text = "남은 시간 : \(number)초"
-                
             } else {
                 number = 0
                 mainLabel.text = "초를 선택하세요"
@@ -65,24 +62,24 @@ class ViewController: UIViewController {
         
     }
     
-    @objc func doSomethingAfter1Second(){
-        if number > 0{
-            number -= 1
-            // 슬라이더 표시
-            slider.setValue(Float(number) / 60.0, animated: true)
-            // 레이블표시도 다시 표시
-            mainLabel.text = "남은 시간 : \(number)초"
-            
-            
-        } else {
-            number = 0
-            mainLabel.text = "초를 선택하세요"
-            timer?.invalidate()
-            // 소리추가
-            AudioServicesPlaySystemSound(SystemSoundID(1322))
-            
-        }
-    }
+//    @objc func doSomethingAfter1Second(){
+//        if number > 0{
+//            number -= 1
+//            // 슬라이더 표시
+//            slider.setValue(Float(number) / 60.0, animated: true)
+//            // 레이블표시도 다시 표시
+//            mainLabel.text = "남은 시간 : \(number)초"
+//
+//
+//        } else {
+//            number = 0
+//            mainLabel.text = "초를 선택하세요"
+//            timer?.invalidate()
+//            // 소리추가
+//            AudioServicesPlaySystemSound(SystemSoundID(1322))
+//
+//        }
+//    }
     
     
     @IBAction func resetButtonTapped(_ sender: UIButton) {
